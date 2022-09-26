@@ -2,11 +2,16 @@ import socket from "socket.io"
 import EventManager from "../managers/EventManager"
 import Client from "./Client"
 
-export default class SocketServer extends socket.Server {
+export default class Server extends socket.Server {
   public events: EventManager = new EventManager()
 
   public constructor(id: string | undefined, secret: string | undefined) {
-    super()
+    super({
+      cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+      }
+    })
 
     // Setup reddit client and socket event manager
     Client.login(id ?? "", secret ?? "").then(client => {

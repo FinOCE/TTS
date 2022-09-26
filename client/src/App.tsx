@@ -1,26 +1,28 @@
-import React from "react"
-import logo from "./logo.svg"
 import "./App.scss"
+import io from "socket.io-client"
+import { useState } from "react"
 
-function App() {
+export default function App() {
+  const [res, setRes] = useState<any>()
+
+  const socket = io("ws://localhost:8000")
+  socket.on("fetch", data => setRes(data))
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        onClick={() =>
+          socket.emit("fetch", {
+            subreddit: "rlsideswipe",
+            options: { sort: "hot" }
+          })
+        }
+      >
+        Send
+      </button>
+      <pre>
+        <code>{JSON.stringify(res, null, 2)}</code>
+      </pre>
     </div>
   )
 }
-
-export default App
