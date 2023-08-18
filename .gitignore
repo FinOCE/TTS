@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Other
-.env
+secrets.json

@@ -16,7 +16,7 @@
     "@preact/preset-vite": "^2.5.0",
     "@types/node": "^20.5.0",
     "@types/snoowrap": "^1.19.0",
-    "typescript": "4.1",
+    "typescript": "^5.1.6",
     "vite": "^4.3.2"
   }
 }
