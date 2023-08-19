@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/compat"
+import { useEffect, useState } from "preact/hooks"
 import Snoowrap from "snoowrap"
 
 export default function useSnoowrap() {

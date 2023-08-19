@@ -1,16 +1,16 @@
-import { useState } from "preact/compat"
+import { useState } from "preact/hooks"
 
 export default function useQueue<T>() {
   const [queue, setQueue] = useState<T[]>([])
 
-  function enqueue(item: T): void {
-    setQueue(prev => [...prev, item])
+  function enqueue(...item: T[]): void {
+    setQueue(prev => [...prev, ...item])
   }
 
   function dequeue(): T | undefined {
     const item = queue[0]
 
-    setQueue(prev => [...prev.slice(1)])
+    setQueue(prev => prev.slice(1))
 
     return item
   }

@@ -1,4 +1,4 @@
-import { useState } from "preact/compat"
+import { useState } from "preact/hooks"
 
 export default function useRotation<T>(items: T[]) {
   const [index, setIndex] = useState(0)
@@ -6,8 +6,7 @@ export default function useRotation<T>(items: T[]) {
   function next(): T {
     const item = items[index]
 
-    if (items.length - 1 === index) setIndex(0)
-    else setIndex(index + 1)
+    setIndex(prev => (items.length - 1 === prev ? 0 : prev + 1))
 
     return item
   }
